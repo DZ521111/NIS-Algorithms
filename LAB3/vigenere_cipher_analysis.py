@@ -2,6 +2,7 @@
 Author : Dhruv B Kakadiya
 
 '''
+import numpy as np
 max_key_length = 9
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 import random
