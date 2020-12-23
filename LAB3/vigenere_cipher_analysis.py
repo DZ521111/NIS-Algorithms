@@ -83,6 +83,7 @@ def get_key (cipher_text, key_length):
         max_.append(result.index(max(result)))
     return max_
 
+# main fucntion
 if __name__ == "__main__":
     mode = input("\nEnter the mode E -> Encryption and D -> Decryption : ")
     if (mode == "E"):
