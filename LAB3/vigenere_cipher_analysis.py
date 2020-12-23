@@ -5,7 +5,6 @@ Author : Dhruv B Kakadiya
 import numpy as np
 max_key_length = 9
 alphabet = "abcdefghijklmnopqrstuvwxyz"
-import random
 
 english_freq = [0.08167, 0.01492, 0.02782, 0.04253, 0.12702, 0.02228, 0.02015,
 				0.06094, 0.06966, 0.00153, 0.00772, 0.04025, 0.02406, 0.06749,
