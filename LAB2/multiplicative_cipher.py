@@ -5,7 +5,7 @@ Author : Dhruv B Kakadiya
 # Multiplicative Cipher
 
 # static variable
-mod = 26 
+mod = 26
 
 from multiplicative_inverse import find_mul_inverse
 
@@ -21,7 +21,7 @@ def mul_cipher_encryption (plain_text, key):
             encrypted_text += letter
     return encrypted_text
 
-# function for decryption  
+# function for decryption
 def mul_cipher_decryption (encrypted_text, mul_inverse):
     decrypted_text = ""
     for letter in encrypted_text:
@@ -33,6 +33,7 @@ def mul_cipher_decryption (encrypted_text, mul_inverse):
             decrypted_text += letter
     return decrypted_text
 
+# main function of code
 if __name__ == "__main__":
     plain_text = input("\nEnter the plain Text : ")
     key = int(input("\nEnter the Key : "))
