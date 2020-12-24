@@ -3,9 +3,11 @@ Author : Dhruv B Kakadiya
 
 '''
 # Multiplicative Cipher
-from multiplicative_inverse import find_mul_inverse
+from multiplicative_inverse import find_mul_inverse\
+
 # static variable
 mod = 26
+
 # function for Encryption
 def affine_cipher_encryption (plain_text, key1, key2):
     encrypted_text = ""
@@ -30,6 +32,7 @@ def affine_cipher_decryption (encrypted_text, mul_inverse, key2):
             decrypted_text += letter
     return decrypted_text
 
+# main function 
 if __name__ == "__main__":
     plain_text = input("\nEnter the plain Text : ")
     key1 = int(input("\nEnter the Key1 : "))
