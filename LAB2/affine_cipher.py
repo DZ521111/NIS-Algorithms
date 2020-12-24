@@ -32,7 +32,7 @@ def affine_cipher_decryption (encrypted_text, mul_inverse, key2):
             decrypted_text += letter
     return decrypted_text
 
-# main function 
+# main function of code
 if __name__ == "__main__":
     plain_text = input("\nEnter the plain Text : ")
     key1 = int(input("\nEnter the Key1 : "))
