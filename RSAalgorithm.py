@@ -71,11 +71,13 @@ if __name__ == '__main__':
             primes.append(n_bit_prime)
             count += 1
     p, q = primes
-    print(f"\nThe primes are => {p}")
-    print(f"\nThe primes are => {q}")
+    print(f"\nThe prime1 is => {p}")
+    print(f"\nThe prime2 is => {q}")
 
     # rsa implementation
     public_key, private_key = generate_keys (p, q)
+    print(f"\nPublic key is :- {public_key}")
+    print(f"\nPrivate key is :- {private_key}")
     e, n = public_key
     d, n = private_key
     encrypted_text = decrypted_text = ""
