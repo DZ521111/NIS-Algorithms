@@ -17,8 +17,20 @@ def find_mul_inverse (a, n):
     gcd, t = n, t1
     return (t % n)
 
+# find phi of prime number n => n - 1 ; n is prime
+def phi (n):
+    return (n - 1)
+
+# encryption function
+def encryption (plain_text, e, n):
+    pass
+
+# decryption function
+def decryption (cipher_text, d, n):
+    pass
+
 #generate_keys
-def generate_keys ():
+def generate_keys (p, q):
     pass
 
 # main method
