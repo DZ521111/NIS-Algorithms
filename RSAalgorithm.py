@@ -4,6 +4,7 @@ Author : Dhruv B Kakadiya
 '''
 # import functions from prime number generater
 from prime_number_generater import simple_testing, miller_rabin_test
+from math import gcd
 
 # function multiplicative inverse
 def find_mul_inverse (a, n):
@@ -14,7 +15,7 @@ def find_mul_inverse (a, n):
         n, a = a, r
         t = t1 - (q * t2)
         t1, t2 = t2, t
-    gcd, t = n, t1
+    t = t1
     return (t % n)
 
 # find phi of prime number n => n - 1 ; n is prime
@@ -31,7 +32,14 @@ def decryption (cipher_text, d, n):
 
 #generate_keys
 def generate_keys (p, q):
-    pass
+    for e in range(2, phi(p) * phi(q)):
+        gcd_ = gcd(e, phi(p) * phi(q))
+        if (gcd_ == 1):
+            break
+    d = find_mul_inverse(e, phi(p) * phi(q))
+    public_key = (e, p * q)
+    private_key = (d, p * q)
+    return public_key, private_key
 
 # main method
 if __name__ == '__main__':
@@ -49,7 +57,12 @@ if __name__ == '__main__':
     print(f"\nThe primes are => {p}")
     print(f"\nThe primes are => {q}")
 
-    public_key, private_key = generate_keys (p, q)
-
     # rsa implementation
+    public_key, private_key = generate_keys (p, q)
+    e, n = public_key
+    d, n = private_key
+    print(e, n)
+    print(d, n)
+
+
 
