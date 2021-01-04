@@ -15,8 +15,7 @@ def find_mul_inverse (a, n):
         n, a = a, r
         t = t1 - (q * t2)
         t1, t2 = t2, t
-    t = t1
-    return (t % n)
+    return (t1 % n)
 
 # find phi of prime number n => n - 1 ; n is prime
 def phi (n):
@@ -32,10 +31,14 @@ def decryption (cipher_text, d, n):
 
 #generate_keys
 def generate_keys (p, q):
+    count = 0
     for e in range(2, phi(p) * phi(q)):
         gcd_ = gcd(e, phi(p) * phi(q))
-        if (gcd_ == 1):
+        if (gcd_ == 1 and count == 10):
             break
+        else:
+            count += 1
+            continue
     d = find_mul_inverse(e, phi(p) * phi(q))
     public_key = (e, p * q)
     private_key = (d, p * q)
