@@ -19,17 +19,35 @@ def find_mul_inverse (a, n):
         t1, t2 = t2, t
     return (t1 % mod)
 
+# multiply and square function
+def multiply_and_square(a, x, n):
+    x = bin(x)
+    x = x[2 : ]
+    x = x[:: -1]
+    y = 1
+    for i in range(0, len(x)):
+        if (int(x[i]) == 1):
+            y = (y * a) % n
+        a = (a ** 2) % n
+    return y
+
 # find phi of prime number n => n - 1 ; n is prime
 def phi (n):
     return (n - 1)
 
 # encryption function
-def encryption (plain_text, e, n):
-    pass
+def encryption (plain_text_list, e, n):
+    encrypted_text_list = []
+    for str in plain_text_list:
+        encrypted_text_list.append(multiply_and_square(str, e, n))
+    return encrypted_text_list
 
 # decryption function
-def decryption (cipher_text, d, n):
-    pass
+def decryption (cipher_text_list, d, n):
+    decrypted_text_list = []
+    for str in cipher_text_list:
+        decrypted_text_list.append(multiply_and_square(str, d, n))
+    return decrypted_text_list
 
 #generate_keys
 def generate_keys (p, q):
@@ -64,8 +82,9 @@ if __name__ == '__main__':
     public_key, private_key = generate_keys (p, q)
     e, n = public_key
     d, n = private_key
-    print(e, n)
-    print(d, n)
+    plain_text = input("\nEnter the plain text :- ")
+    plain_text_list = plain_text.split()
+    encrypted_text = encryption (plain_text_list, e, n)
 
 
 

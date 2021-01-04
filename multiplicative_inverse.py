@@ -12,7 +12,7 @@ def find_mul_inverse (a, n):
         r = n - (q * a)
         n, a = a, r
         t = t1 - (q * t2)
-        t1, t2 = t2, t 
+        t1, t2 = t2, t
     gcd, t = n, t1
     return gcd, t
 
