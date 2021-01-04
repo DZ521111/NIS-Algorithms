@@ -2,10 +2,13 @@
 Author : Dhruv B Kakadiya
 
 '''
+
 # import functions from prime number generater
 from prime_number_generater import simple_testing, miller_rabin_test
 from math import gcd
 import random
+
+alphabet = "qazxswedcvfrtgbnhyujmkiolp"
 
 # function multiplicative inverse
 def find_mul_inverse (a, n):
@@ -36,18 +39,12 @@ def phi (n):
     return (n - 1)
 
 # encryption function
-def encryption (plain_text_list, e, n):
-    encrypted_text_list = []
-    for str in plain_text_list:
-        encrypted_text_list.append(multiply_and_square(str, e, n))
-    return encrypted_text_list
+def encryption (plain_text, e, n):
+    return multiply_and_square(plain_text, e, n)
 
 # decryption function
-def decryption (cipher_text_list, d, n):
-    decrypted_text_list = []
-    for str in cipher_text_list:
-        decrypted_text_list.append(multiply_and_square(str, d, n))
-    return decrypted_text_list
+def decryption (cipher_text, d, n):
+    return multiply_and_square(cipher_text, d, n)
 
 #generate_keys
 def generate_keys (p, q):
@@ -56,7 +53,6 @@ def generate_keys (p, q):
         gcd_ = gcd(e, phi(p) * phi(q))
         if (gcd_ == 1):
             break
-    print(f"gcd in function {gcd_}")
     d = find_mul_inverse(e, phi(p) * phi(q))
     public_key = (e, p * q)
     private_key = (d, p * q)
@@ -82,9 +78,28 @@ if __name__ == '__main__':
     public_key, private_key = generate_keys (p, q)
     e, n = public_key
     d, n = private_key
+    encrypted_text = decrypted_text = ""
     plain_text = input("\nEnter the plain text :- ")
     plain_text_list = plain_text.split()
-    encrypted_text = encryption (plain_text_list, e, n)
 
+    # encryption of plain text
+    encrypted_ord_list = []
+    for str in plain_text_list:
+        encrypted_single_ord_list = []
+        for letter in str:
+            encrypted_single_ord_list.append(encryption(ord(letter), e, n))
+        for cipher in encrypted_single_ord_list:
+            encrypted_text += alphabet[(cipher % 26)]
+        encrypted_text += " "
+        encrypted_ord_list.append(encrypted_single_ord_list)
+    print(f"\nEncrypted text is :- {encrypted_text}")
+
+    # decryption of cipher text
+    for str in encrypted_ord_list:
+        for letter in str:
+            decrypted_text += chr(decryption(letter, d, n))
+        decrypted_text += " "
+
+    print(f"\nDecrypted text is :- {decrypted_text}\n")
 
 
