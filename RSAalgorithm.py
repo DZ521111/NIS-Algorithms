@@ -5,9 +5,11 @@ Author : Dhruv B Kakadiya
 # import functions from prime number generater
 from prime_number_generater import simple_testing, miller_rabin_test
 from math import gcd
+import random
 
 # function multiplicative inverse
 def find_mul_inverse (a, n):
+    mod = n
     t1, t2 = 0, 1
     while(a > 0):
         q = n // a
@@ -15,7 +17,7 @@ def find_mul_inverse (a, n):
         n, a = a, r
         t = t1 - (q * t2)
         t1, t2 = t2, t
-    return (t1 % n)
+    return (t1 % mod)
 
 # find phi of prime number n => n - 1 ; n is prime
 def phi (n):
@@ -31,14 +33,12 @@ def decryption (cipher_text, d, n):
 
 #generate_keys
 def generate_keys (p, q):
-    count = 0
-    for e in range(2, phi(p) * phi(q)):
+    while (True):
+        e = random.randint(2, (phi(p) * phi(q) - 1))
         gcd_ = gcd(e, phi(p) * phi(q))
-        if (gcd_ == 1 and count == 10):
+        if (gcd_ == 1):
             break
-        else:
-            count += 1
-            continue
+    print(f"gcd in function {gcd_}")
     d = find_mul_inverse(e, phi(p) * phi(q))
     public_key = (e, p * q)
     private_key = (d, p * q)
