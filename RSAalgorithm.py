@@ -17,6 +17,10 @@ def find_mul_inverse (a, n):
     gcd, t = n, t1
     return (t % n)
 
+#generate_keys
+def generate_keys ():
+    pass
+
 # main method
 if __name__ == '__main__':
     count = 0
@@ -32,6 +36,8 @@ if __name__ == '__main__':
     p, q = primes
     print(f"\nThe primes are => {p}")
     print(f"\nThe primes are => {q}")
+
+    public_key, private_key = generate_keys (p, q)
 
     # rsa implementation
 
