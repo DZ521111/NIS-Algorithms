@@ -62,7 +62,6 @@ def find_freq (text):
 def get_key_length (cipher_text):
     all_ic = []
     all_Seq = []
-    min, index = 10**3, -1
     for guess_length in range(3, max_key_length):
         ic = 0.0
         avg_ic = 0.0
