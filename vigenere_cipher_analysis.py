@@ -2,7 +2,6 @@
 Author : Dhruv B Kakadiya
 
 '''
-import numpy as np
 
 # key threshold
 max_key_length = 9
