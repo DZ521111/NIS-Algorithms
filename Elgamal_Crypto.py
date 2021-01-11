@@ -18,6 +18,17 @@ def find_mul_inverse (a, n):
         t1, t2 = t2, t
     return (t1 % mod)
 
+# multiply and square function
+def multiply_and_square(a, x, n):
+    x = bin(x)
+    x = x[2 : ]
+    x = x[:: -1]
+    y = 1
+    for i in range(0, len(x)):
+        if (int(x[i]) == 1):
+            y = (y * a) % n
+        a = (a ** 2) % n
+    return y
 
 # main if condition
 if __name__ == "__main__":
