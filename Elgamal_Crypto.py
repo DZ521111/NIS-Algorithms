@@ -57,6 +57,17 @@ def all_roots (order, prime):
             proots.append(i)
     return proots
 
+# find public and private keys
+def find_public_private_key (proots, prime):
+    e1 = proots[rd.randint(0, len(proots) - 1)]
+    condition = prime - 2
+    while (True):
+        d = proots[rd.randint(0, len(proots) - 1)]
+        if (d <= condition):
+            break
+    e2 = multiply_and_square (e1, d, prime)
+    return (e1, e2, prime), d
+
 # main if condition
 if __name__ == "__main__":
     n = int(input("\nEnter the number of bits of prime number :- "))
@@ -72,8 +83,11 @@ if __name__ == "__main__":
     order = primitive_roots_order (prime)
     proots = all_roots (order, prime)
 
-    # randomly select e1 as proot from proots
-    e1 = proots[rd.randint(0, len(proots) - 1)]
+    # finding public and private key
+    public_key, private_key = find_public_private_key (proots, prime)
+    print(public_key, private_key)
+
+
 
 
 
