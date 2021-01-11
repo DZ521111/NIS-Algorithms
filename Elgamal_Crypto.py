@@ -7,6 +7,8 @@ import random as rd
 from prime_number_generater import simple_testing, miller_rabin_test
 # In python there is a module called Elgamal!
 
+alphabet = "qazxswedcvfrtgbnhyujmkiolp"
+
 # to find multiplicative_inverse
 def find_mul_inverse (a, n):
     mod = n
@@ -68,6 +70,13 @@ def find_public_private_key (proots, prime):
     e2 = multiply_and_square (e1, d, prime)
     return (e1, e2, prime), d
 
+# encryption
+def encryption_for_2 (letter, e1, r, prime):
+    return multiply_and_square()
+
+def encryption_for_1 (letter, e2, r, prime):
+    pass
+
 # main if condition
 if __name__ == "__main__":
     n = int(input("\nEnter the number of bits of prime number :- "))
@@ -85,10 +94,24 @@ if __name__ == "__main__":
 
     # finding public and private key
     public_key, private_key = find_public_private_key (proots, prime)
-    print(public_key, private_key)
+    e1, e2, prime = public_key
+    d = private_key
+    print(f"\nPublic key is => '{public_key}'")
+    print(f"private key is => '{private_key}'")
 
+    # Encryption and Decryption of plain_text data
+    r = proots[rd.randint(0, len(proots) - 1)]
+    plain_text = input("\nEnter the plain text :- ")
+    plain_text_list = plain_text.split()
+    cipher_text_1 = ""
+    cipher_text_2 = ""
 
-
-
-
-
+    cipher2_ord_list = []
+    for str in plain_text_list:
+        encrypted_single_ord_list = []
+        for letter in str:
+            encrypted_single_ord_list.append(encryption_for_2(ord(letter), e1, r, prime))
+        for cipher in encrypted_single_ord_list:
+            cipher_text_2 += alphabet[(cipher % 26)]
+        cipher_text_2 += " "
+        cipher2_ord_list.append(encrypted_single_ord_list)
