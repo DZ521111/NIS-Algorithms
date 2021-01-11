@@ -19,6 +19,7 @@ def find_mul_inverse (a, n):
     return (t1 % mod)
 
 
+# main if condition
 if __name__ == "__main__":
     n = int(input("\nEnter the number of bits of prime number :- "))
     while (True):
