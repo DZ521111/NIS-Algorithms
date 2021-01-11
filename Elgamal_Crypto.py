@@ -7,7 +7,11 @@ import random as rd
 from prime_number_generater import simple_testing, miller_rabin_test
 # In python there is a module called Elgamal!
 
-alphabet = "qazxswedcvfrtgbnhyujmkiolp"
+'''all_char = ""
+for i in range(32, 128):
+    all_char += chr(i)'''
+
+alphabet = "abcdefghijklmnopqrstuvwxyz"
 
 # to find multiplicative_inverse
 def find_mul_inverse (a, n):
@@ -71,11 +75,14 @@ def find_public_private_key (proots, prime):
     return (e1, e2, prime), d
 
 # encryption
-def encryption_for_2 (letter, e1, r, prime):
-    return multiply_and_square()
+def encryption_for_2 (letter, e2, r, prime):
+    return (multiply_and_square(e2, r, prime) * (letter % prime))
 
-def encryption_for_1 (letter, e2, r, prime):
-    pass
+def encryption_for_1 (e1, r, prime):
+    return (multiply_and_square(e1, r, prime))
+
+def decryption (letter, cipher_text_1, d, prime):
+    return ((letter % prime) * (find_mul_inverse (cipher_text_1 ** d, prime))) % prime
 
 # main if condition
 if __name__ == "__main__":
@@ -106,12 +113,25 @@ if __name__ == "__main__":
     cipher_text_1 = ""
     cipher_text_2 = ""
 
+    cipher_text_1 = encryption_for_1 (e1, r, prime)
+
     cipher2_ord_list = []
     for str in plain_text_list:
         encrypted_single_ord_list = []
         for letter in str:
-            encrypted_single_ord_list.append(encryption_for_2(ord(letter), e1, r, prime))
+            encrypted_single_ord_list.append(encryption_for_2(ord(letter), e2, r, prime))
+        #print(f"\nSingle ord list :- {encrypted_single_ord_list}")
         for cipher in encrypted_single_ord_list:
             cipher_text_2 += alphabet[(cipher % 26)]
         cipher_text_2 += " "
         cipher2_ord_list.append(encrypted_single_ord_list)
+
+    print(f"\nCipher text 1 => '{cipher_text_1}'")
+    print(f"\nCipher text 2 => '{cipher_text_2}'")
+
+    decrypted_text = ""
+    for str in cipher2_ord_list:
+        for letter in str:
+            decrypted_text += chr(decryption(letter, cipher_text_1, d, prime) % prime)
+        decrypted_text += " "
+    print(decrypted_text)
