@@ -90,6 +90,7 @@ if __name__ == '__main__':
         encrypted_single_ord_list = []
         for letter in str:
             encrypted_single_ord_list.append(encryption(ord(letter), e, n))
+        print(encrypted_single_ord_list)
         for cipher in encrypted_single_ord_list:
             encrypted_text += alphabet[(cipher % 26)]
         encrypted_text += " "

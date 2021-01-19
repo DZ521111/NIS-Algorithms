@@ -46,12 +46,12 @@ def primitive_roots_order (prime):
     order = [None] * prime
     # find the all primitive roots
     for r in range(1, prime):
-        first_one = True
+        #first_one = True
         for c in range(1, prime):
             mas = multiply_and_square(r, c, prime)
-            if ((first_one) and (mas == 1)):
+            if (mas == 1):
                 order[r] = c
-                first_one = False
+                break
     return order
 
 # find all primitive roots
@@ -74,6 +74,7 @@ def find_public_private_key (proots, prime):
     e2 = multiply_and_square (e1, d, prime)
     return (e1, e2, prime), d
 
+
 # encryption
 def encryption_for_2 (letter, e2, r, prime):
     return (multiply_and_square(e2, r, prime) * (letter % prime))
@@ -83,6 +84,7 @@ def encryption_for_1 (e1, r, prime):
 
 def decryption (letter, cipher_text_1, d, prime):
     return ((letter % prime) * (find_mul_inverse (cipher_text_1 ** d, prime))) % prime
+
 
 # main if condition
 if __name__ == "__main__":
@@ -128,4 +130,4 @@ if __name__ == "__main__":
     for letter in encrypted_ord_list:
         decrypted_text += chr(decryption(letter, cipher_text_1, d, prime) % prime)
 
-    print(f"\n{decrypted_text}")
+    print(f"\n\n\nDecrypted text => {decrypted_text}")
