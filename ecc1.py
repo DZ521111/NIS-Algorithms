@@ -47,6 +47,8 @@ def find_points_elliptic_curve(a, b, prime):
                 print(f"\nNo Solutions! for x = {x}")
             x += 1
         return (all_points)
+    else:
+        return ([])
 
 # main if condition
 if __name__ == "__main__":
