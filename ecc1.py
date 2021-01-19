@@ -61,8 +61,8 @@ if __name__ == "__main__":
             prime = n_bit_prime
             break
 
-    a, b = map(int, input("\nEnter two points a, b :- "))
+    a, b = map(int, input("\nEnter two points a, b :- ").split())
     print(f"\nThe prime number is => '{prime}'")
-
+    prime = 13
     all_points = find_points_elliptic_curve(a, b, prime)
-    print(all_points)
+    print(all_points, end = "\n")
