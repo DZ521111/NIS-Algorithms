@@ -3,7 +3,7 @@ Author : Dhruv B Kakadiya
 
 '''
 # Multiplicative Cipher
-from multiplicative_inverse import find_mul_inverse\
+from multiplicative_inverse import find_mul_inverse
 
 # static variable
 mod = 26

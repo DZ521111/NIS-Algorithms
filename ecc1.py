@@ -2,6 +2,9 @@
 Author : Dhruv B Kakadiya
 
 '''
+# import libraries
+from multiplicative_inverse import find_mul_inverse
+
 # find power mod prime
 def power_nmod (a, n, prime):
     res = 1
