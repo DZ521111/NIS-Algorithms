@@ -5,6 +5,7 @@ Author : Dhruv B Kakadiya
 # import libraries
 from multiplicative_inverse import find_mul_inverse
 from prime_number_generater import simple_testing, miller_rabin_test
+import math
 
 # find power mod prime
 def power_nmod (a, n, prime):
@@ -19,6 +20,34 @@ def power_nmod (a, n, prime):
         a = (a ** 2) % prime
     return (res)
 
+# checking for valid parameters
+def is_valid_ab (a, b):
+    if (4 * (a ** 3) + 3 * (b ** 2) == 0):
+        print(f"\nNot valid a = {a} and b = {b}")
+        return (False)
+    else:
+        print(f"\na = {a} and b = {b} is valid!")
+        return (True)
+
+# find all possible points
+def find_points_elliptic_curve(a, b, prime):
+    if (is_valid_ab(a, b)):
+        x = 0
+        all_points = []
+        while (x < prime):
+            w = ((x ** 3) + (a * x) + b) % prime
+            if (power_nmod(w, ((prime - 1) // 2), prime) == 1):
+                root = math.sqrt(w)
+                while (math.ceil(root) != root):
+                    w += prime
+                    root = math.sqrt(w)
+                all_points.append((x, int(root % prime)))
+                all_points.append((x, int((-root) % prime)))
+            if (power_nmod(w, ((prime - 1) // 2), prime) == -1):
+                print(f"\nNo Solutions! for x = {x}")
+            x += 1
+        return (all_points)
+
 # main if condition
 if __name__ == "__main__":
     n = int(input("\nEnter the number of bits of prime number :- "))
@@ -29,4 +58,9 @@ if __name__ == "__main__":
         else:
             prime = n_bit_prime
             break
+
+    a, b = map(int, input("\nEnter two points a, b :- "))
     print(f"\nThe prime number is => '{prime}'")
+
+    all_points = find_points_elliptic_curve(a, b, prime)
+    print(all_points)
