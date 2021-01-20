@@ -43,7 +43,7 @@ def find_points_elliptic_curve(a, b, prime):
                     root = math.sqrt(w)
                 all_points.append((x, int(root % prime)))
                 all_points.append((x, int((-root) % prime)))
-            if (power_nmod(w, ((prime - 1) // 2), prime) == -1):
+            if (power_nmod(w, ((prime - 1) // 2), prime) == prime - 1):
                 print(f"\nNo Solutions! for x = {x}")
             x += 1
         return (all_points)
@@ -63,6 +63,6 @@ if __name__ == "__main__":
 
     a, b = map(int, input("\nEnter two points a, b :- ").split())
     print(f"\nThe prime number is => '{prime}'")
-    prime = 13
     all_points = find_points_elliptic_curve(a, b, prime)
-    print(all_points, end = "\n")
+    print(all_points)
+    print()
